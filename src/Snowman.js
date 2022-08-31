@@ -50,6 +50,10 @@ function Snowman({
   function handleGuess(evt) {
     let ltr = evt.target.value;
 
+    if (nWrong >= maxWrong -1) { //why -1?
+      setGuessedLetters(words[0]);
+    }
+
     setGuessedLetters(g => {
       const newGuessed = new Set(g);
       newGuessed.add(ltr);
@@ -64,6 +68,7 @@ function Snowman({
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
         <button
             key={ltr}
+            className={ltr}
             value={ltr}
             onClick={handleGuess}
             disabled={guessedLetters.has(ltr)}
@@ -76,8 +81,10 @@ function Snowman({
   return (
       <div className="Snowman">
         <img src={(images)[nWrong]} alt={nWrong} />
-        <p> number wrong: {nWrong}.</p>
+        { nWrong < maxWrong && <p className="numWrong"> number wrong: {nWrong}.</p>}
+        { nWrong >= maxWrong && <p className="numWrong"> "You lose"</p>}
         <p className="Snowman-word">{guessedWord()}</p>
+
         <p>{generateButtons()}</p>
       </div>
   );

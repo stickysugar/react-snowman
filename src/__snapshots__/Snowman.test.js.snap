@@ -9,8 +9,10 @@ exports[`matches snapshot 1`] = `
       alt="0"
       src="test"
     />
-    <p>
-       number wroong: 
+    <p
+      class="numWrong"
+    >
+       number wrong: 
       0
       .
     </p>
